@@ -1,6 +1,6 @@
 Privoxy Docker image for OpenShift and Kubernetes.
 
-Same as https://hub.docker.com/r/gianarb/privoxy/ but this Dockerfile uses USER 1001. This is necessary to run on OpenShift.
+Same as https://hub.docker.com/r/gianarb/privoxy/ but this image uses `USER` `1001`. This is necessary to run on OpenShift.
 
 Docker instructions:
 ```
@@ -9,6 +9,7 @@ docker run aliok/privoxy
 
 OpenShift and Kubernetes instructions:
 ```
+cat <<EOS |kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -48,4 +49,5 @@ spec:
   type: NodePort
 status:
   loadBalancer: {}
+EOS
 ```
